@@ -19,3 +19,11 @@ if (page == "TootOttoComputer"){
     import("./TootOttoComputer.js")
   .catch(e => console.error("Error importing `TootOttoComputer.js`:", e));
 }
+if (page == "ScoreBoard"){
+    import("./ScoreBoard.js")
+  .catch(e => console.error("Error importing `ScoreBoard.js`:", e));
+}
+if (page == "Scores"){
+    import("./Scores.js")
+  .catch(e => console.error("Error importing `Scores.js`:", e));
+}
