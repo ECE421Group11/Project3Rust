@@ -7,11 +7,6 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "bootstrap.js",
   },
-  entry: "./handler-connect4human.js",
-  output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "handler-connect4human.js",
-  },
   mode: "development",
   plugins: [
     new CopyWebpackPlugin(['index.html'])

@@ -21,7 +21,7 @@ function show(){
 
 function setText(){
     document.getElementById("newGameNames").innerHTML = "New Game: " + name1 + " Vs " + name2;
-    document.getElementById("discs").innerHTML = "(Disc Colors: " + name1 + " - Red and " + name2 + " - Yellow)";
+    document.getElementById("discs").innerHTML = "(Disc Colors: " + name1 + " - <b>Red</b> and " + name2 + " - <b>Yellow</b>)";
 }
 
 function drawBoard(){
