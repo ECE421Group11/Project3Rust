@@ -17,3 +17,8 @@ extern {
 pub fn greet() {
     alert("Hello, project3-rust!");
 }
+
+#[wasm_bindgen]
+pub fn return_name() -> String{
+    return String::from("testing");
+}
