@@ -14,7 +14,7 @@
   <div class="w3-container">
     <h3 class="w3-padding-64"><b>Play<br>Connect4 / TOOT-OTTO</b></h3>
   </div>
-  <a href="html/HowToConnect4.html" class="w3-padding w3-hover-white">How to Play Connect4</a>
+  <a href="HowToConnect4.html" class="w3-padding w3-hover-white">How to Play Connect4</a>
   <a href="Connect4Computer.html" class="w3-padding w3-hover-white">Play Connect4 With Computer</a> 
   <a href="Connect4Human.html" class="w3-padding w3-hover-white">Play Connect4 with Another Human</a> 
   <br></br>
@@ -36,11 +36,26 @@
 <div class="w3-overlay w3-hide-large" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:390px;margin-right:40px">
-
-  <div ng-view></div>
-
-</script>
+<div id='main' ng-controller="mainController" style="padding-left: 400px;">
+  <form ng-submit="Game()">
+    <div class="w3-container" id="services" style="margin-top:75px">
+      <h5 class="w3-xxxlarge w3-text-red"><b>Welcome</b></h5>
+      <hr style="width:50px;border:5px solid red" class="w3-round">
+      <p>This application contains the following two board games, both in human Vs. human and human Vs. Computer versions.
+      </p>
+  
+      <ul>
+  
+      <li>Connect 4</li>
+  
+      <li>TOOT-OTTO</li>
+  
+  
+    </ul>
+    <p>Select the game of your choice from the side bar, and start playing. Enjoy!</p>
+    </div>
+  </form>
+  </div>
 
 </body>
 </html>
