@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
   </head>
 <body ng-app="Connect4App">
+<script src="./bootstrap.js"></script>
 
 <!-- Sidenav/menu -->
 <nav class="w3-sidenav w3-red w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:350px;font-weight:bold" id="mySidenav"><br>
@@ -47,13 +48,13 @@
         <div class="col-md-offset-3 col-md-8">
 
           <input id="textbox1" type="text" placeholder="Your Name" ng-model="newGame.Player1Name"/>
-          <input id="startbutton" class="button" type="submit" value="Start Game"/>
+          <input id="startbutton" class="button" type="button" value="Start Game"/>
         </div>
       </form>
-      <div class='post' ng-repeat="game in games">
+      <div class='post' id='names' ng-repeat="game in games">
         <br></br>
-        <h4>New Game:  {{game.Player1Name}} Vs {{game.Player2Name}}</h4>
-        <small>(Disc Colors: {{game.Player1Name}} - <b>Red</b>    and    {{game.Player2Name}} - <b>Yellow</b>)</small>
+        <h4 id="newGameNames">New Game:  {{game.Player1Name}} Vs {{game.Player2Name}}</h4>
+        <small id="discs">(Disc Colors: {{game.Player1Name}} - <b>Red</b>    and    {{game.Player2Name}} - <b>Yellow</b>)</small>
         <br></br>
       </div>  
         <canvas id="gameboard" height="480" width="640"></canvas>

@@ -3,7 +3,6 @@ import * as wasm from "Project3Rust";
 // wasm.greet();
 
 var name1 = ""
-var name2 = ""
 
 
 hide();
@@ -20,13 +19,12 @@ function show(){
 }
 
 function setText(){
-    document.getElementById("newGameNames").innerHTML = "New Game: " + name1 + " Vs " + name2;
-    document.getElementById("discs").innerHTML = "(Disc Colors: " + name1 + " - <b>Red</b> and " + name2 + " - <b>Yellow</b>)";
+    document.getElementById("newGameNames").innerHTML = "New Game: " + name1 + " Vs Computer";
+    document.getElementById("winningcombo").innerHTML = "(Winning Combination: " + name1 + " - <b>TOOT</b> and Computer - <b>OTTO</b>)";
 }
 
 function startGame(){
     name1 = document.getElementById("textbox1").value;
-    name2 = document.getElementById("textbox2").value;
     setText();
     show();
 }
