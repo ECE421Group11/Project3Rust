@@ -1,0 +1,15 @@
+{
+  "name": "project3-rust",
+  "collaborators": [
+    "Glenn <47393384+glnnrhodes@users.noreply.github.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "project3_rust_bg.wasm",
+    "project3_rust.js",
+    "project3_rust.d.ts"
+  ],
+  "module": "project3_rust.js",
+  "types": "project3_rust.d.ts",
+  "sideEffects": false
+}
