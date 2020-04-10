@@ -26,10 +26,14 @@ function setText(){
 
 function drawBoard(){
     var canvas = document.getElementsByTagName("canvas")[0];
+    canvas.addEventListener('click', function (e) {
+        wasm.greet();
+    });
+    
     var context = canvas.getContext('2d');
     context.fillStyle = "white";
     context.fillRect(0, 0, canvas.width, canvas.height);
-    
+
     // Create a canvas that we will use as a mask
     context.save();
     context.fillStyle = "black";
@@ -44,8 +48,9 @@ function drawBoard(){
     context.fill();
 
     context.restore();
-    context.drawImage(maskCanvas, 0, 0);
+    context.drawImage(maskCanvas, 0, 0);    
 }
+
 
 function startGame(){
     name1 = document.getElementById("textbox1").value;
