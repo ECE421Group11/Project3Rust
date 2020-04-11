@@ -3,7 +3,14 @@ import * as wasm from "Project3Rust";
 // wasm.greet();
 
 var name1 = ""
-
+var canvas = document.getElementsByTagName("canvas")[0];
+var context = canvas.getContext('2d');
+var map = [];
+var paused = false;
+var won = false;
+var rejectClick = false;
+var move = 0;
+var aiHistory = [];
 
 hide();
 range_changed();
@@ -51,5 +58,14 @@ function startGame(){
     else{
         setText();
         show();
+        drawBoard();
     }
+}
+
+function drawBoard(){
+    //var canvas = document.getElementsByTagName("canvas")[0];
+    canvas.addEventListener('click', function (e) {
+        onclick(canvas, e);
+    });
+    init();
 }

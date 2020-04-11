@@ -13,14 +13,6 @@ var won = false;
 var rejectClick = false;
 var move = 0;
 var aiHistory = [];
-    // var i, j;
-    // for (i = 0; i <= 6; i++) {
-    //     map[i] = [];
-    //     for (j = 0; j <= 7; j++) {
-    //         map[i][j] = 0;
-    //     }
-    // }
-
 
 hide();
 document.getElementById("startbutton").addEventListener("click", startGame);
@@ -135,7 +127,7 @@ function win(player) {
     msg += " - Click on game board to reset";
     context.save();
     context.font = '14pt sans-serif';
-    context.fillStyle = "#111";
+    context.fillStyle = "white";
     context.fillText(msg, 150, 20);
     postService.save($scope.newGame, function(){
 
@@ -270,7 +262,7 @@ function drawMask() {
     // -->  http://stackoverflow.com/a/11770000/917957
 
     context.save();
-    context.fillStyle = "#00bfff";
+    context.fillStyle = "black";
     context.beginPath();
     var x, y;
     for (y = 0; y < 6; y++) {
