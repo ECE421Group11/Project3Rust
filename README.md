@@ -2,6 +2,8 @@
 
   <h1><code>Connect 4 In Rust</code></h1>
 
+</div>
+
 ## 🚴 Usage
 
 
@@ -42,4 +44,4 @@ npm run start
 
 ## 📝 Documentation
 
-* [Report](https://google.ca) for the project report.
+* [Report](https://github.com/ECE421Group11/Project3Rust/blob/master/documentation/Report.md) for the project report.
