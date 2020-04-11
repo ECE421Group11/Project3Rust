@@ -43,41 +43,25 @@ function setText(){
 function drawBoard(){
     //var canvas = document.getElementsByTagName("canvas")[0];
     canvas.addEventListener('click', function (e) {
-        //wasm.greet();
-        //Game();
-        //humanController();
         onclick(canvas, e);
     });
-    
-    init();/*
-    var context = canvas.getContext('2d');
-    context.fillStyle = "white";
-    context.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Create a canvas that we will use as a mask
-    context.save();
-    context.fillStyle = "black";
-    context.beginPath();
-    var x, y;
-    for (y = 0; y < 6; y++) {
-        for (x = 0; x < 7; x++) {
-            context.arc(75 * x + 100, 75 * y + 50, 25, 0, 2 * Math.PI);
-            context.rect(75 * x + 150, 75 * y, -100, 100);
-        }
-    } 
-    context.fill();
-
-    context.restore();
-    context.drawImage(maskCanvas, 0, 0);    */
+    init();
 }
 
 
 function startGame(){
-    name1 = document.getElementById("textbox1").value;
-    name2 = document.getElementById("textbox2").value;
-    setText();
-    show();
-    drawBoard();
+    name1 = document.getElementById("textbox1").value.trim();
+    name2 = document.getElementById("textbox2").value.trim();
+    if (name1 == "" || name2 == ""){
+        document.getElementById("textbox1").value = ""
+        document.getElementById("textbox2").value = ""
+        alert("Names cannot be empty");
+    }
+    else{
+        setText();
+        show();
+        drawBoard();
+    }
 }
 
 
@@ -380,3 +364,4 @@ function onclick(canvas, e) {
         }
     }
 };
+
