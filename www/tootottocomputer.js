@@ -43,7 +43,13 @@ function setText(){
 }
 
 function startGame(){
-    name1 = document.getElementById("textbox1").value;
-    setText();
-    show();
+    name1 = document.getElementById("textbox1").value.trim();
+    if (name1 == ""){
+        document.getElementById("textbox1").value = ""
+        alert("Your name cannot be empty");
+    }
+    else{
+        setText();
+        show();
+    }
 }
