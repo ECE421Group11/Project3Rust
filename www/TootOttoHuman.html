@@ -53,7 +53,7 @@
           <input id="startbutton" class="button" type="button" value="Start Game"/>
         </div>
       </form>
-      <div class='post' id='names' ng-repeat="game in games">
+      <div class='post' id='names' style="display: none;" ng-repeat="game in games">
         <br></br>
         <h4 id="newGameNames">New Game:  {{game.Player1Name}} Vs {{game.Player2Name}}</h4>
         <small id="winningcombo">(Winning Combination: {{game.Player1Name}} - <b>TOOT</b>    and    {{game.Player2Name}} - <b>OTTO</b>)</small>

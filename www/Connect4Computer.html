@@ -50,13 +50,13 @@
           <input id="textbox1" type="text" placeholder="Your Name" ng-model="newGame.Player1Name"/>
           <input id="startbutton" class="button" type="button" value="Start Game"/>
           <p><b>Difficulty:</b>&nbsp;&nbsp;<input type="range" id='drange' min="1" max="3" value="2">&nbsp;&nbsp;<b id='difficulty'>Normal</b></p>
-          <small id='changediff'>Please refresh page to change difficulty</small>
+          <small id='changediff' style="display: none;">Please refresh page to change difficulty</small>
         </div>
       </form>
-      <div class='post' id='names' ng-repeat="game in games">
+      <div class='post' id='names' style="display: none;" ng-repeat="game in games">
         <br></br>
-        <h4 id="newGameNames">New Game:  {{game.Player1Name}} Vs {{game.Player2Name}}</h4>
-        <small id="discs">(Disc Colors: {{game.Player1Name}} - <b>Red</b>    and    {{game.Player2Name}} - <b>Yellow</b>)</small>
+        <h4 id="newGameNames" >New Game:  {{game.Player1Name}} Vs {{game.Player2Name}}</h4>
+        <small id="discs" >(Disc Colors: {{game.Player1Name}} - <b>Red</b>    and    {{game.Player2Name}} - <b>Yellow</b>)</small>
         <br></br>
       </div>  
         <canvas id="gameboard" height="480" width="640"></canvas>
