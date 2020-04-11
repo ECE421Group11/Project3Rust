@@ -25,8 +25,15 @@ function setText(){
 }
 
 function startGame(){
-    name1 = document.getElementById("textbox1").value;
-    name2 = document.getElementById("textbox2").value;
-    setText();
-    show();
+    name1 = document.getElementById("textbox1").value.trim();
+    name2 = document.getElementById("textbox2").value.trim();
+    if (name1 == "" || name2 == ""){
+        document.getElementById("textbox1").value = ""
+        document.getElementById("textbox2").value = ""
+        alert("Names cannot be empty");
+    }
+    else{
+        setText();
+        show();
+    }
 }
