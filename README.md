@@ -32,6 +32,7 @@ db.games.find().pretty()
 ### 🛠️ Build with `wasm-pack build`
 
 ```
+cargo build
 wasm-pack build
 ```
 
