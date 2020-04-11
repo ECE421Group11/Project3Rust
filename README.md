@@ -44,4 +44,4 @@ npm run start
 
 ## 📝 Documentation
 
-* [Report](https://github.com/ECE421Group11/Project3Rust/blob/master/documentation/Report.md) for the project report.
+* [Report](https://github.com/ECE421Group11/Project3Rust/wiki/Report) for the project report.
