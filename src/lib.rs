@@ -63,15 +63,27 @@ fn insert_game(gameNumber: &str, gameType: &str, player1Name: &str, player2Name:
 }
 
 #[wasm_bindgen]
-fn get_number_of_games_against_computer() -> usize {
+fn get_number_of_games(playerName : &str) -> usize {
     let client = Client::with_uri_str("mongodb://localhost:27017/");
     let db = client.unwrap().database("connect4");
     let collection = db.collection("games");
+    let mut length : usize = 0;
 
-    let filter = doc! { "player2Name": "Computer" };
+    let filter = doc! { "player1Name": playerName };
     let find_options = FindOptions::builder().build();
     let cursor = collection.find(filter, find_options);
-    let mut length : usize = 0;
+    for result in cursor.unwrap() {
+        match result {
+            Ok(document) => {
+                length = length + 1;
+            }
+            Err(e) => {},
+        }
+    }
+
+    let filter = doc! { "player2Name": playerName };
+    let find_options = FindOptions::builder().build();
+    let cursor = collection.find(filter, find_options);
     for result in cursor.unwrap() {
         match result {
             Ok(document) => {
@@ -84,12 +96,12 @@ fn get_number_of_games_against_computer() -> usize {
 }
 
 #[wasm_bindgen]
-fn get_number_of_games_computer_won() -> usize {
+fn get_number_of_games_won(playerName : &str) -> usize {
     let client = Client::with_uri_str("mongodb://localhost:27017/");
     let db = client.unwrap().database("connect4");
     let collection = db.collection("games");
 
-    let filter = doc! { "winnerName": "Computer" };
+    let filter = doc! { "winnerName": playerName };
     let find_options = FindOptions::builder().build();
     let cursor = collection.find(filter, find_options);
     let mut length : usize = 0;
