@@ -127,7 +127,7 @@ function win(player) {
     msg += " - Click on game board to reset";
     context.save();
     context.font = '14pt sans-serif';
-    context.fillStyle = "white";
+    context.fillStyle = "black";
     context.fillText(msg, 150, 20);
     postService.save($scope.newGame, function(){
 
@@ -247,14 +247,25 @@ function check() {
 };
 
 function drawCircle(x, y, r, fill, stroke) {
-    context.save();
-    context.fillStyle = fill;
-    context.strokeStyle = stroke;
-    context.beginPath();
-    context.arc(x, y, r, 0, 2 * Math.PI, false);
-    //context.stroke();
-    context.fill();
-    context.restore();
+        context.save;
+        context.beginPath();
+        context.fillStyle = fill;
+        context.strokeStyle = "black";
+        context.font = "20px Georgia";
+        context.lineWidth = 10;
+        context.arc(x, y, r, 0, 2 * Math.PI, false);
+        context.fill();
+        context.beginPath();
+        if (fill == "#ff4136"){
+            context.fillStyle = "black";
+            context.fillText("R", x-6, y+6);
+        }
+        else if (fill == "#ffff00"){
+            context.fillStyle = "black";
+            context.fillText("Y", x-6, y+6);
+        }
+        context.fill();
+        context.restore();
 };
 function drawMask() {
     // draw the mask
@@ -262,7 +273,7 @@ function drawMask() {
     // -->  http://stackoverflow.com/a/11770000/917957
 
     context.save();
-    context.fillStyle = "black";
+    context.fillStyle = "#00bfff";
     context.beginPath();
     var x, y;
     for (y = 0; y < 6; y++) {
