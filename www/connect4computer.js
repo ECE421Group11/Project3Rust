@@ -373,12 +373,9 @@ function onclick(canvas, e) {
             // console.log("clicked region " + j);
             paused = false;
             valid = action(j, function () {
-            //     easyAi();
                 ai(-1);
-                //easyAi();
             }); 
             //action(j);
-            //easyAi();
             if (valid === 1) { // give user retry if action is invalid
                 rejectClick = true;
             }
@@ -593,6 +590,12 @@ function ai(aiMoveValue) {
 
     function normalAi(){
         // Randomly choose either hard or easy for normal difficulty
+        if (Math.random() > 0.7){
+            easyAi();
+        }
+        else{
+            hardAi();
+        }
     }
     
     // Choose which dificulty is selected and play accordingly
@@ -603,12 +606,7 @@ function ai(aiMoveValue) {
     }
     else if (difficulty == '2'){
         // Normal
-        if (Math.random() > 0.7){
-            easyAi();
-        }
-        else{
-            hardAi();
-        }
+        normalAi();
     }
     else{
         // Hard

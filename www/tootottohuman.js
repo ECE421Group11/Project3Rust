@@ -4,9 +4,6 @@ import * as wasm from "Project3Rust";
 
 var name1 = ""
 var name2 = ""
-
-var name1 = ""
-var name2 = ""
 var canvas = document.getElementsByTagName("canvas")[0];
 var context = canvas.getContext('2d');
 var map = [];
