@@ -1,7 +1,5 @@
 import * as wasm from "Project3Rust";
 
-// wasm.greet();
-
 var name1 = "";
 var name2 = "Computer";
 var canvas = document.getElementsByTagName("canvas")[0];
@@ -158,7 +156,9 @@ function win(player) {
     console.info(msg);
 };
 function fillMap(state, column, value) {
-    var tempMap = state.clone();
+    //var tempMap = state.clone();
+    var tempMap = JSON.parse(JSON.stringify(state));
+
     if (tempMap[0][column] !== 0 || column < 0 || column > 6) {
         return -1;
     }
@@ -353,7 +353,6 @@ function oncircle(coord, centerCoord, radius) {
 };
 
 function onclick(canvas, e) {
-    //wasm.greet();
     if (rejectClick) {
         return false;
     }
@@ -375,8 +374,8 @@ function onclick(canvas, e) {
             paused = false;
             valid = action(j, function () {
             //     easyAi();
-                //ai(-1);
-                easyAi();
+                ai(-1);
+                //easyAi();
             }); 
             //action(j);
             //easyAi();
@@ -499,7 +498,6 @@ function ai(aiMoveValue) {
         var j;
         for (j = 0; j < 7; j++) {
             tempState = fillMap(state, j, aiMoveValue);
-            wasm.greet();
             if (tempState !== -1) {
 
                 tempVal = value(tempState, depth, alpha, beta);
@@ -558,36 +556,63 @@ function ai(aiMoveValue) {
 
         return [v, move];
     }
-    wasm.greet();
-    var choice = null;
-    var state = map.clone();
 
-    var choice_val = maxState(state, 0, -100000000007, 100000000007);
-    wasm.greet();
-    choice = choice_val[1];
-    var val = choice_val[0];
-    console.info("AI " + aiMoveValue + " choose column: " + choice + " (value: " + val + ")");
-
-    paused = false;
-    var done = action(choice, function () {
-        rejectClick = false;
-        //that.ai(-aiMoveValue);
-    });
-
-    // if fail, then random
-    while (done < 0) {
-        console.error("Falling back to random agent");
-        choice = Math.floor(Math.random() * 7);
-        done = action(choice, function () {
+    function hardAi(){
+        // Hard Ai
+        var choice = null;
+        //var state = map.clone();
+        var state = JSON.parse(JSON.stringify(map));
+    
+        var choice_val = maxState(state, 0, -100000000007, 100000000007);
+        choice = choice_val[1];
+        var val = choice_val[0];
+        console.info("AI " + aiMoveValue + " choose column: " + choice + " (value: " + val + ")");
+    
+        paused = false;
+        
+        var done = action(choice, function () {
             rejectClick = false;
         });
+        // if fail, then random
+        while (done < 0) {
+            console.error("Falling back to random agent");
+            choice = Math.floor(Math.random() * 7);
+            done = action(choice, function () {
+                rejectClick = false;
+            });
+        }
     }
 
+    function easyAi(){
+        // Random choice for easy setting
+        var choice = Math.floor(Math.random() * 7);
+        paused = false;
+        action(choice);
+        rejectClick = false;
+    }
+
+    function normalAi(){
+        // Randomly choose either hard or easy for normal difficulty
+    }
+    
+    // Choose which dificulty is selected and play accordingly
+    var difficulty = document.getElementById("drange").value;
+    if (difficulty == '1'){
+        // Easy
+        easyAi();
+    }
+    else if (difficulty == '2'){
+        // Normal
+        if (Math.random() > 0.7){
+            easyAi();
+        }
+        else{
+            hardAi();
+        }
+    }
+    else{
+        // Hard
+        hardAi();
+    }
 };
 
-function easyAi(){
-    wasm.greet();
-    //choice = Math.floor(Math.random() * 7);
-    action(0);
-    //wasm.greet();
-}
