@@ -20,25 +20,6 @@ extern crate serde_derive;
 // For converting into a JS Array
 use js_sys::Array;
 
-#[derive(Serialize, Deserialize)]
-struct Date {
-    hour: u32,
-    minute: u32,
-    month: u32,
-    day: u32,
-    year: i32,
-}
-
-#[derive(Serialize, Deserialize)]
-pub struct Game {
-    game_number: String,
-    game_type: String,
-    player1_name: String,
-    player2_name: String,
-    winner_name: String,
-    date: Date,
-}
-
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
 // allocator.
 #[cfg(feature = "wee_alloc")]
