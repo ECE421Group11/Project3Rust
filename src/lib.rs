@@ -51,6 +51,14 @@ pub fn greet() {
 }
 
 #[wasm_bindgen]
+pub fn player_move(val:usize) -> isize{
+    if val % 2 == 0 {
+        return 1;
+    }
+    return -1;
+}
+
+#[wasm_bindgen]
 pub fn return_name() -> String{
     return String::from("testing");
 }

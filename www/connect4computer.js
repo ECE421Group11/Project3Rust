@@ -89,13 +89,6 @@ function init() {
     print();
 };
 
-function playerMove() {
-    if (move % 2 === 0) {
-        return 1;
-    }
-    return -1;
-};
-
 function print() {
     var i, j, msg;
     msg = "\n";
@@ -107,7 +100,7 @@ function print() {
         }
         msg += "\n";
     }
-    console.log(msg);
+    console.log(msg); 
 };
 
 function printState(state) {
@@ -201,8 +194,9 @@ function action(column, callback) {
     if (!done) {
         row = 5;
     }
-    animate(column, playerMove(move), row, 0, function () {
-        map[row][column] = playerMove(move);
+    animate(column, wasm.player_move(move), row, 0, function () {
+        map[row][column] = wasm.player_move(move);
+        //map[row][column] = playerMove(move);
         move++;
         draw();
         check();
