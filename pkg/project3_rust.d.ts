@@ -9,6 +9,11 @@ export function greet(): void;
 */
 export function player_move(val: number): number;
 /**
+* @param {any} js_ob 
+* @returns {Int32Array} 
+*/
+export function check_state(js_ob: any): Int32Array;
+/**
 * @returns {string} 
 */
 export function return_name(): string;

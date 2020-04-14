@@ -132,6 +132,7 @@ dependencies = [
  "console_error_panic_hook",
  "js-sys",
  "serde",
+ "serde_derive",
  "serde_json",
  "wasm-bindgen",
  "wasm-bindgen-test",
@@ -246,6 +247,8 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2cc57ce05287f8376e998cbddfb4c8cb43b84a7ec55cf4551d7c00eef317a47f"
 dependencies = [
  "cfg-if",
+ "serde",
+ "serde_json",
  "wasm-bindgen-macro",
 ]
 

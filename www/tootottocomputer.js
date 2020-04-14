@@ -449,64 +449,9 @@ function onclick(canvas, e) {
 
 function ai(aiMoveValue) {
     //console.log(this.aiHistory);
-
-    function checkState(state) {
-        /*if (typeof that.aiHistory[state] !== 'undefined') {
-            return that.aiHistory[state];
-        }*/
-        var winVal = 0;
-        var chainVal = 0;
-        var i, j, k;
-        var temp_r = 0, temp_b = 0, temp_br = 0, temp_tr = 0;
-        for (i = 0; i < 6; i++) {
-            for (j = 0; j < 7; j++) {
-                temp_r = 0;
-                temp_b = 0;
-                temp_br = 0;
-                temp_tr = 0;
-                for (k = 0; k <= 3; k++) {
-                    //from (i,j) to right
-                    if (j + k < 7) {
-                        temp_r += state[i][j + k];
-                    }
-
-                    //from (i,j) to bottom
-                    if (i + k < 6) {
-                        temp_b += state[i + k][j];
-                    }
-
-                    //from (i,j) to bottom-right
-                    if (i + k < 6 && j + k < 7) {
-                        temp_br += state[i + k][j + k];
-                    }
-
-                    //from (i,j) to top-right
-                    if (i - k >= 0 && j + k < 7) {
-                        temp_tr += state[i - k][j + k];
-                    }
-                }
-                chainVal += temp_r * temp_r * temp_r;
-                chainVal += temp_b * temp_b * temp_b;
-                chainVal += temp_br * temp_br * temp_br;
-                chainVal += temp_tr * temp_tr * temp_tr;
-
-                if (Math.abs(temp_r) === 4) {
-                    winVal = temp_r;
-                } else if (Math.abs(temp_b) === 4) {
-                    winVal = temp_b;
-                } else if (Math.abs(temp_br) === 4) {
-                    winVal = temp_br;
-                } else if (Math.abs(temp_tr) === 4) {
-                    winVal = temp_tr;
-                }
-
-            }
-        }
-        //that.aiHistory[state] = [winVal, chainVal];
-        return [winVal, chainVal];
-    }
     function value(state, depth, alpha, beta) {
-        var val = checkState(state);
+        //var val = checkState(state);
+        var val = wasm.check_state(state);
         if (depth >= 4) { // if slow (or memory consumption is high), lower the value
             //that.printState(state);
             // calculate value
