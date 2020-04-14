@@ -324,11 +324,11 @@ function draw() {
             var text="";
             fg_color = "transparent";
             if (map[y][x] >= 1 && dummyMap[y][x] === 'T') {
-                fg_color = "#99ffcc";
+                fg_color = "#ff4136";
                 text="T";
                 //text=$scope.newGame.Label;
             }else if (map[y][x] >= 1 && dummyMap[y][x] === 'O') {
-                fg_color = "#99ffcc";
+                fg_color = "#ff4136";
                 text="O";
                // text=$scope.newGame.Label;
             }else if (map[y][x] <= -1 && dummyMap[y][x] === 'T') {

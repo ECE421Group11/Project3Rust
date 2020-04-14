@@ -103,17 +103,6 @@ function print() {
     console.log(msg); 
 };
 
-function printState(state) {
-    var i, j, msg = "\n";
-    for (i = 0; i < 6; i++) {
-        for (j = 0; j < 7; j++) {
-            msg += " " + state[i][j];
-        }
-        msg += "\n";
-    }
-    console.log(msg);
-};
-
 function win(player) {
     paused = true;
     won = true;
@@ -338,13 +327,6 @@ function onregion(coord, x, radius) {
     }
     return false;
 };
-function oncircle(coord, centerCoord, radius) {
-    if ((coord[0] - centerCoord[0]) * (coord[0] - centerCoord[0]) <=  radius * radius
-            && (coord[1] - centerCoord[1]) * (coord[1] - centerCoord[1]) <=  radius * radius) {
-        return true;
-    }
-    return false;
-};
 
 function onclick(canvas, e) {
     if (rejectClick) {
@@ -381,7 +363,6 @@ function onclick(canvas, e) {
 function ai(aiMoveValue) {
     //console.log(aiHistory);
     
-    //that.printState(state);
     function checkState(state) {
         /*if (typeof that.aiHistory[state] !== 'undefined') {
             return that.aiHistory[state];
@@ -441,7 +422,6 @@ function ai(aiMoveValue) {
     function value(state, depth, alpha, beta) {
         var val = checkState(state);
         if (depth >= 4) { // if slow (or memory consumption is high), lower the value
-            //that.printState(state);
 
             // calculate value
             var retValue = 0;
