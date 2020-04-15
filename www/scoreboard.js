@@ -35,7 +35,6 @@ function display_array(arr){
         + "<td>" + data[i]['winner'] + "</td>" 
         + "<td>" + data[i]['when'] + "</td>" 
         + "</tr>";
-        console.log(data[i])
     }
     html += "</table>";
 
