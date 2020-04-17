@@ -102,6 +102,49 @@ function printState(state) {
     console.log(msg);
 };
 
+function store_win(winner){
+    let req = new XMLHttpRequest();
+
+    req.onreadystatechange = () => {
+    if (req.readyState == XMLHttpRequest.DONE) {
+        console.log(req.responseText);
+    }
+    };
+
+    req.open("GET", "https://api.jsonbin.io/b/5e9648362940c704e1d82cea/latest", true);
+    req.setRequestHeader("secret-key", "$2b$10$jqnL1kWdKnd4NwKxvcE9QOYMBNq6gS1qIfKA0SEJUq90W1o5v/Umq");
+    req.send();
+    req.onload = () => {
+        var data = JSON.parse(req.response);
+        var arr = data['games'];
+
+        var currentdate = new Date().toLocaleString();
+        arr.push({
+            "gameID": arr[arr.length - 1]["gameID"] + 1,
+            "gameType": "Connect-4",
+            "player1": name1,
+            "player2": name2,
+            "winner": winner,
+            "when": currentdate,
+        });
+        data['games'] = arr;
+
+        let putreq = new XMLHttpRequest();
+        putreq.onreadystatechange = () => {
+        if (putreq.readyState == XMLHttpRequest.DONE) {
+            console.log(putreq.responseText);
+        }
+        };
+
+        putreq.open("PUT", "https://api.jsonbin.io/b/5e9648362940c704e1d82cea", true);
+        putreq.setRequestHeader("secret-key", "$2b$10$jqnL1kWdKnd4NwKxvcE9QOYMBNq6gS1qIfKA0SEJUq90W1o5v/Umq");
+        putreq.setRequestHeader('Content-type','application/json');
+        putreq.onload = () => {
+        }
+        putreq.send(JSON.stringify(data))
+    }
+}
+
 function win(player) {
     paused = true;
     won = true;
@@ -109,12 +152,15 @@ function win(player) {
     var msg = null;
     if (player > 0) {
         msg = name1 + " wins";
+        store_win(name1);
         //$scope.newGame.WinnerName=$scope.newGame.Player1Name;
     } else if (player < 0) {
         msg = name2 + " wins";
+        store_win(name2);
         //$scope.newGame.WinnerName=$scope.newGame.Player2Name;
     } else {
         msg = "It's a draw";
+        store_win("Draw");
         //$scope.newGame.WinnerName='Draw';
     }
     msg += " - Click on game board to reset";
@@ -122,19 +168,11 @@ function win(player) {
     context.font = '14pt sans-serif';
     context.fillStyle = "black";
     context.fillText(msg, 150, 20);
-    postService.save($scope.newGame, function(){
-
-        console.log("succesfully saved");
-    });
 
     canvas = document.getElementsByTagName("canvas")[0];
     canvas.addEventListener('click', function (e) {
         location.reload();
-    });
-    //context.restore();
-    button.disabled = false;    
-
-    console.info(msg);
+    });  
 };
 function fillMap(state, column, value) {
     var tempMap = state.clone();

@@ -1,0 +1,72 @@
+<!DOCTYPE html>	
+<html>	
+  <head>	
+    <title>Connect4</title>	
+    <meta name="viewport" content="width=device-width, initial-scale=1">	
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">	
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">	
+  </head>	
+<body ng-app="Connect4App">	
+
+<script src="./bootstrap.js"></script>	
+
+<!-- Sidenav/menu -->	
+<nav class="w3-sidenav w3-red w3-collapse w3-top w3-large w3-padding" style="z-index:3;width:350px;font-weight:bold" id="mySidenav"><br>	
+  <a href="javascript:void(0)" class="w3-padding-xlarge w3-hide-large w3-display-topleft w3-hover-white" style="width:100%">Close Menu</a>	
+  <div class="w3-container">	
+    <h3 class="w3-padding-64"><b>Play<br>Connect4 / TOOT-OTTO</b></h3>	
+  </div>	
+  <a href="HowToConnect4.html" class="w3-padding w3-hover-white">How to Play Connect4</a>	
+  <a href="Connect4Computer.html" class="w3-padding w3-hover-white">Play Connect4 With Computer</a> 	
+  <a href="Connect4Human.html" class="w3-padding w3-hover-white">Play Connect4 with Another Human</a> 	
+  <br></br>	
+  <a href="HowToToot.html" class="w3-padding w3-hover-white">How to Play TOOT-OTTO</a>	
+  <a href="TootOttoComputer.html" class="w3-padding w3-hover-white">Play Toot-Otto With Computer</a>	
+  <a href="TootOttoHuman.html" class="w3-padding w3-hover-white">Play Toot-Otto With Another Human</a>	
+  <br></br>	
+  <a href="ScoreBoard.html" class="w3-padding w3-hover-white">View Game History</a>	
+  <a href="Scores.html" class="w3-padding w3-hover-white">Score Board</a>	
+</nav>	
+
+<!-- Top menu on small screens -->	
+<header class="w3-container w3-top w3-hide-large w3-red w3-xlarge w3-padding">	
+  <a href="javascript:void(0)" class="w3-btn w3-red w3-border w3-border-white w3-margin-right">&#9776;</a>	
+  <span>Connect 4 with MEAN</span>	
+</header>	
+
+<!-- Overlay effect when opening sidenav on small screens -->	
+<div class="w3-overlay w3-hide-large" style="cursor:pointer" title="close side menu" id="myOverlay"></div>	
+
+<!-- !PAGE CONTENT! -->	
+<div id='main' ng-controller="ScoreBoardCtrl" style="padding-left: 400px;">	
+
+	<div class="w3-container" id="services" style="margin-top:75px">	
+	  <h5 class="w3-xxxlarge w3-text-red"><b>Score Board</b></h5>	
+	  <hr style="width:50px;border:5px solid red" class="w3-round">	
+	  <div><h4>Games Won by Computer<h4></div>	
+	  <div id = "display_games_won_by_computer">	
+	  </div>	
+
+	  <br></br>	
+
+		  <div><h4>Details of Games Won by Computer<h4></div>	
+		  <div id="game-stream">	
+		  <div id = "display_details_won_by_computer">	
+		  </div>	
+
+		  <br></br>	
+
+		  <div><h4>Details of Games Won by All Players<h4></div>	
+		  <div id="game-stream">	
+		  <div id = "display_details_won_by_players">	
+		  </div>	
+
+			  </div>	
+	  </div>	
+
+	</div>	
+
+  </div>	
+
+</body>	
+</html>
