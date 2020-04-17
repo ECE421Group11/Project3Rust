@@ -116,11 +116,15 @@ function getArrayI32FromWasm0(ptr, len) {
 }
 /**
 * @param {any} js_ob
+* @param {number} depth
+* @param {number} alpha
+* @param {number} beta
+* @param {number} ai_move_val
 * @returns {Int32Array}
 */
-export function check_state(js_ob) {
+export function max_state(js_ob, depth, alpha, beta, ai_move_val) {
     try {
-        wasm.check_state(8, addBorrowedObject(js_ob));
+        wasm.max_state(8, addBorrowedObject(js_ob), depth, alpha, beta, ai_move_val);
         var r0 = getInt32Memory0()[8 / 4 + 0];
         var r1 = getInt32Memory0()[8 / 4 + 1];
         var v0 = getArrayI32FromWasm0(r0, r1).slice();

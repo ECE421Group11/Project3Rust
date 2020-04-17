@@ -448,117 +448,6 @@ function onclick(canvas, e) {
 };
 
 function ai(aiMoveValue) {
-    //console.log(this.aiHistory);
-    function value(state, depth, alpha, beta) {
-        //var val = checkState(state);
-        var val = wasm.check_state(state);
-        if (depth >= 4) { // if slow (or memory consumption is high), lower the value
-            //that.printState(state);
-            // calculate value
-            var retValue = 0;
-
-            // if win, value = +inf
-            var winVal = val[0];
-            var chainVal = val[1] * aiMoveValue;
-            retValue = chainVal;
-
-            // If it lead to winning, then do it
-            if (winVal === 4 * aiMoveValue) { // AI win, AI wants to win of course
-                retValue = 999999;
-            } else if (winVal === 4 * aiMoveValue * -1) { // AI lose, AI hates losing
-                retValue = 999999 * -1;
-            }
-            retValue -= depth * depth;
-
-            return [retValue, -1];
-        }
-
-        var win = val[0];
-        // if already won, then return the value right away
-        if (win === 4 * aiMoveValue) { // AI win, AI wants to win of course
-            return [999999 - depth * depth, -1];
-        }
-        if (win === 4 * aiMoveValue * -1) { // AI lose, AI hates losing
-            return [999999 * -1 - depth * depth, -1];
-        }
-
-        if (depth % 2 === 0) {
-            return minState(state, depth + 1, alpha, beta);
-        }
-        return maxState(state, depth + 1, alpha, beta);
-
-    }
-    function choose(choice) {
-        return choice[Math.floor(Math.random() * choice.length)];
-    }
-    function maxState(state, depth, alpha, beta) {
-        var v = -100000000007;
-        var move = -1;
-        var tempVal = null;
-        var tempState = null;
-        var moveQueue = [];
-        var j;
-        for (j = 0; j < 7; j++) {
-            tempState = fillMap(state, j, aiMoveValue);
-            if (tempState !== -1) {
-
-                tempVal = value(tempState, depth, alpha, beta);
-                if (tempVal[0] > v) {
-                    v = tempVal[0];
-                    move = j;
-                    moveQueue = [];
-                    moveQueue.push(j);
-                } else if (tempVal[0] === v) {
-                    moveQueue.push(j);
-                }
-
-                // alpha-beta pruning
-                if (v > beta) {
-                    move = choose(moveQueue);
-                    return [v, move];
-                }
-                alpha = Math.max(alpha, v);
-            }
-        }
-        move = choose(moveQueue);
-
-        return [v, move];
-    }
-    function minState(state, depth, alpha, beta) {
-        var v = 100000000007;
-        var move = -1;
-        var tempVal = null;
-        var tempState = null;
-        var moveQueue = [];
-        var j;
-
-        for (j = 0; j < 7; j++) {
-            tempState = fillMap(state, j, aiMoveValue * -1);
-            if (tempState !== -1) {
-
-                tempVal = value(tempState, depth, alpha, beta);
-                if (tempVal[0] < v) {
-                    v = tempVal[0];
-                    move = j;
-                    moveQueue = [];
-                    moveQueue.push(j);
-                } else if (tempVal[0] === v) {
-                    moveQueue.push(j);
-                }
-
-                // alpha-beta pruning
-                if (v < alpha) {
-                    move = choose(moveQueue);
-                    return [v, move];
-                }
-                beta = Math.min(beta, v);
-            }
-        }
-        move = choose(moveQueue);
-
-        return [v, move];
-    }
-
     function hardAi(){
         var tokenType = Math.floor(Math.random() * 2);
         if (tokenType == 0){
@@ -574,9 +463,8 @@ function ai(aiMoveValue) {
         //$scope.newGame.Label=dummyLabel[choice];
 
         var choice = null;
-        //var state = this.map.clone();
         var state = JSON.parse(JSON.stringify(map));
-        var choice_val = maxState(state, 0, -100000000007, 100000000007);
+        var choice_val = wasm.max_state(state, 0, -2147483648, 2147483647, aiMoveValue);
         choice = choice_val[1];
         var val = choice_val[0];
         console.info("AI " + aiMoveValue + " choose column: " + choice + " (value: " + val + ")");
